@@ -1,4 +1,12 @@
 {
+    "name": "thyagodias/php-pdo",
+    "description": "Uma aplicação simples para treinar PHP PDO",
+    "authors": [
+        {
+            "name": "Thyago Dias",
+            "email": "thyagojuniorrochadias@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Alura\\Pdo\\": "src/"
