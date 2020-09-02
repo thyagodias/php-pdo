@@ -41,7 +41,8 @@ class Student
     }
 }
 
-function soma($numbers) {
+function soma($numbers)
+{
     $soma = 0;
     foreach ($numbers as $number) {
         $soma += $number;
@@ -49,4 +50,4 @@ function soma($numbers) {
     echo "A soma foi de $soma";
 }
 
-soma([1,2,3]);
+soma([1, 2, 3]);
