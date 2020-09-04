@@ -20,7 +20,7 @@ class Student
 
     public function defineId(int $id): void
     {
-        if (is_null($this->id)) {
+        if (!is_null($this->id)) {
             throw new \DomainException('Você só pode definir o ID ima vez');
         }
 
