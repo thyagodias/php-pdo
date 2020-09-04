@@ -21,9 +21,13 @@ class PdoStudentRepository implements StudentRepository
     public function insert(Student $student): bool
     {
         $insertQuery = 'INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);';
-        $statment = $this->connection->prepare($insertQuery);
+        $stmt = $this->connection->prepare($insertQuery);
 
-        $response = $statment->execute([
+        if ($stmt === false) {
+            throw new \RuntimeException($this->connection->errorInfo()[2]);
+        }
+
+        $response = $stmt->execute([
             ':name' => $student->name(),
             ':birth_date' => $student->birthDate()->format('Y-m-d')
         ]);
@@ -63,7 +67,7 @@ class PdoStudentRepository implements StudentRepository
 
     private function hydrateStudentList(\PDOStatement $stmt): array
     {
-        $studentDataList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $studentDataList = $stmt->fetchAll();
         $studentList = [];
         foreach ($studentDataList as $studentData) {
             $studentList[] = new Student(
